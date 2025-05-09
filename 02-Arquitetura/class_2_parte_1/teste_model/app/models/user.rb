@@ -21,6 +21,10 @@ class User < ApplicationRecord
   def notify_user_created
     ActiveSupport::Notifications.instrument("something.notified", user: self)
   end
+
+  def self.say_hello_zeitwerk
+    MbaOnRails.zeitwerk_test
+  end
 end
 
 
