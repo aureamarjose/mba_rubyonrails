@@ -40,12 +40,15 @@ class UsersController < ApplicationController
   # PATCH/PUT /users/1 or /users/1.json
   def update
     respond_to do |format|
-      if Users::CreateAndNotify.call(user_params)
-        format.html { redirect_to @user, notice: "User was successfully updated." }
-        format.json { render :show, status: :ok, location: @user }
+      result = Users::CreateUser.call(params: user_params)
+
+      #if Users::CreateAndNotify.call(user_params)
+      if result.success?
+        format.html { redirect_to result.user, notice: "User was successfully updated." }
+        format.json { render :show, status: :ok, location: result.user }
       else
         format.html { render :edit, status: :unprocessable_entity }
-        format.json { render json: @user.errors, status: :unprocessable_entity }
+        format.json { render json: result.user.errors, status: :unprocessable_entity }
       end
     end
   end
