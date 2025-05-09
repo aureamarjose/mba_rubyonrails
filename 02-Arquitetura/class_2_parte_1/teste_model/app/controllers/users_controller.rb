@@ -40,8 +40,8 @@ class UsersController < ApplicationController
   # PATCH/PUT /users/1 or /users/1.json
   def update
     respond_to do |format|
-      result = Users::CreateUser.call(params: user_params)
-
+      #result = Users::CreateUser.call(params: user_params)
+      result = Users::Organizers::CreateNotify.call(params: user_params)
       #if Users::CreateAndNotify.call(user_params)
       if result.success?
         format.html { redirect_to result.user, notice: "User was successfully updated." }
