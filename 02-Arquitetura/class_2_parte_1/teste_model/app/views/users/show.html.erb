@@ -1,17 +1,22 @@
 <p style="color: green"><%= notice %></p>
 
-<%= render @user %>
+<%#render @user %>
+<%decorated_user = UserDecorator.new(@user) %>
+<p>
+  <strong>Name:</strong>
+  <%=decorated_user.name %>
+</p>
+
+<p>
+  <strong>Email:</strong>
+  <%=decorated_user.email %>
+</p>
 
 <div>
   <%= link_to "Edit this user", edit_user_path(@user) %> |
   <%= link_to "Back to users", users_path %>
-
   <%= button_to "Destroy this user", @user, method: :delete %>
 </div>
 
-<%#decorate_user = UserDecorator.new(@user) %>
 
-<p>
-  <strong>Name:</strong>
-  <%# decorate_user.name %>
-</p>
+

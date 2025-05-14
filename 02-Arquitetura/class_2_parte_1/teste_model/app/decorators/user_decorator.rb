@@ -9,6 +9,6 @@ class UserDecorator
   end
 
   def email
-    @user.email.downcase
+    @user.email.upcase
   end
 end
